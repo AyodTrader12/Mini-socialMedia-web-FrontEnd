@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "../auth/AuthProvider";
 import { getErrorMessage } from "../lib/Api";
 import { registerSchema, type RegisterForm } from "../lib/Schema";
-import { AuthLayout } from "../components/AuthLayout";
+import { AuthLayout } from "../Layout/AuthLayout";
 import { Field } from "../components/Field";
 import { inputClass, primaryButton } from "../components/ui";
 
@@ -28,6 +28,7 @@ export default function RegisterPage() {
     } catch (err) {
       setServerError(getErrorMessage(err));
     }
+    
   };
 
   return (

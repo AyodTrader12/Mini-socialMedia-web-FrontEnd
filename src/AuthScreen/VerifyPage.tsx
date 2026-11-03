@@ -6,7 +6,7 @@ import { useAuth } from "../auth/AuthProvider";
 import { api, getErrorMessage } from "../lib/Api";
 import { verifySchema, type VerifyForm } from "../lib/Schema";
 import type { User } from "../types/Api";
-import { AuthLayout } from "../components/AuthLayout";
+import { AuthLayout } from "../Layout/AuthLayout";
 import { Field } from "../components/Field";
 import { inputClass, primaryButton, secondaryButton } from "../components/ui";
 

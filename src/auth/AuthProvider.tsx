@@ -8,6 +8,7 @@ type AuthContextValue = {
   loading: boolean;
   login: (email: string, password: string) => Promise<User>;
   register: (username: string, email: string, password: string) => Promise<User>;
+  loginWithGoogle: (idToken: string) => Promise<User>;
   logout: () => void;
   setUser: (user: User) => void;
 };
@@ -68,14 +69,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return data.user;
   }, []);
 
+  const loginWithGoogle = useCallback(async (idToken: string) => {
+  const { data } = await api.post<AuthResponse>("/auth/google", { idToken });
+  tokenStore.set(data.token);
+  setUser(data.user);
+  return data.user;
+}, []);
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, setUser }}>
+    <AuthContext.Provider value={{ user, loading, login, register, loginWithGoogle, logout, setUser }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
-export function useAuth() {
+export function  useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error("useAuth must be used inside AuthProvider");
   return ctx;

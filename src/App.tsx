@@ -5,7 +5,7 @@ import RegisterPage from "./AuthScreen/RegisterPage";
 import VerifyPage from "./AuthScreen/VerifyPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./error/NotFoundPage";
-
+import AppShell from "./components/AppShell"
 export default function App() {
   return (
     <Routes>
@@ -15,7 +15,9 @@ export default function App() {
       </Route>
 
       <Route element={<ProtectedRoute />}>
-        <Route path="/" element={<HomePage />} />
+   <Route element={<AppShell />}>
+    <Route path="/" element={<HomePage />} />
+  </Route>
         <Route path="/verify" element={<VerifyPage />} />
       </Route>
 
